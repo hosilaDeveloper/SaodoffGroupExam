@@ -1,7 +1,9 @@
 from rest_framework import generics
-from .models import About, Team, ContactInfo, Services, Suggestions, OurService, Home, WhyUs, Portfolio, Contact
+from .models import About, Team, ContactInfo, Services, Suggestions, OurService, Home, WhyUs, Portfolio, Contact, \
+    Connection, CustomerOpinion, Category
 from .serializers import AboutSerializer, TeamSerializer, ContactInfoSerializer, ServiceSerializer, \
-    SuggestionsSerializer, OurServiceSerializer, HomeSerializer, WhyUsSerializer, PortfolioSerializer, ContactSerializer
+    SuggestionsSerializer, OurServiceSerializer, HomeSerializer, WhyUsSerializer, PortfolioSerializer, \
+    ContactSerializer, CategorySerializer, ConnectionSerializer, CustomerOpinionSerializer
 
 
 class HomeList(generics.ListCreateAPIView):
@@ -52,3 +54,18 @@ class ContactInfoView(generics.ListAPIView):
 class ContactView(generics.ListAPIView):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
+
+
+class CategoryView(generics.ListAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+
+class ConnectionView(generics.ListAPIView):
+    queryset = Connection.objects.all()
+    serializer_class = ConnectionSerializer
+
+
+class CustomerOpinionView(generics.ListAPIView):
+    queryset = CustomerOpinion.objects.all()
+    serializer_class = CustomerOpinionSerializer

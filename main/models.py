@@ -68,9 +68,17 @@ class OurService(TimeStamp):
         return self.title
 
 
+class Category(TimeStamp):
+    name = models.CharField(max_length=212)
+
+    def __str__(self):
+        return self.name
+
+
 class Portfolio(TimeStamp):
     title = models.CharField(max_length=212)
     image = models.ImageField(upload_to='portfolio/')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -89,3 +97,25 @@ class Contact(TimeStamp):
 class ContactInfo(TimeStamp):
     phone = models.CharField(max_length=212)
     email = models.EmailField()
+
+
+class Connection(TimeStamp):
+    name = models.CharField(max_length=212)
+    surname = models.CharField(max_length=212)
+    phone = models.CharField(max_length=212)
+    service_tourism = models.CharField(max_length=212)
+    opinion = models.CharField(max_length=212)
+
+    def __str__(self):
+        return self.name
+
+
+class CustomerOpinion(TimeStamp):
+    name = models.CharField(max_length=212)
+    surname = models.CharField(max_length=212)
+    profession = models.CharField(max_length=212)
+    image = models.ImageField(upload_to='opinion/')
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name

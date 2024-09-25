@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Home, WhyUs, Suggestions, ContactInfo, Services, OurService, About, Team, Portfolio, Contact
+from .models import Home, WhyUs, Suggestions, ContactInfo, Services, OurService, About, Team, Portfolio, Contact, \
+    Category, CustomerOpinion, Connection
 
 
 class HomeSerializer(serializers.ModelSerializer):
@@ -50,7 +51,15 @@ class TeamSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+
 class PortfolioSerializer(serializers.ModelSerializer):
+    category = CategorySerializer(read_only=True)
+
     class Meta:
         model = Portfolio
         fields = '__all__'
@@ -59,4 +68,16 @@ class PortfolioSerializer(serializers.ModelSerializer):
 class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
+        fields = '__all__'
+
+
+class ConnectionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Connection
+        fields = '__all__'
+
+
+class CustomerOpinionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomerOpinion
         fields = '__all__'
